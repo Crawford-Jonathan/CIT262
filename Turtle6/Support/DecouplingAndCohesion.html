@@ -1,0 +1,110 @@
+<html>
+<head>
+<link rel=StyleSheet href="http://www-apps.us.oracle.com:/~mmclaugh/html/pkmops.css" type="text/css">
+</head>
+<body>
+<img src="http://www-apps.us.oracle.com:/~mmclaugh/java/header.jpg"><p>
+<p>
+<body>
+<p>
+Typically, when doing an Object-Oriented Analysis &amp; Design, you
+don't require coding.  However, the best<br> way to truly understand the
+concepts is to write code.<br>
+<p>
+The source starting code is found in Turtle5.zip file and contains an Adobe
+Acrobat file and the static class<br> diagram.  The base code has some
+problems from the perspective of encapsulation, cohesion and coupling.<br>
+If you want to work on moving code to an OO and reuse pattern, then you
+should modify the code to<br> guarantee the following:<br>
+<p>
+<ol>
+  <li>Effective encapsulation is consistent.
+  <li>Identification and localization by package the reusable code components.
+  <li>Effective cohesion of classes.
+  <li>Localization of coupling withing packages.
+</ol>
+<p>
+Some types of problems and fixes you may need to look for:<br>
+<p>
+<table>
+  <tr>
+    <td class=tableheader>Problem</td>
+    <td class=tableheader>Potential Solution</td>
+    <td class=tableheader>Rationale</td>
+  </tr>
+  <tr>
+    <td class=tablerow valign=top>
+      Dependencies on class static constant<br>
+      variables are examples of coupling<br>
+      when they are not arguments passed<br>
+      into a method of the class owning the<br>
+      static variables.
+    </td>
+    <td class=tablerow valign=top>
+      Classes that publish static constants<br>
+      typically provide public <i>"getters"</i> and<br>
+      <i>"setters"</i> methods for those variables<br>
+      that may be required to effectively leverage<br>
+      objects that are internally coupled within a<br>
+      package.
+    </td>
+    <td class=tablerow valign=top>
+      Publishing class static constant<br>
+      variables is done ONLY when they<br>
+      are required to guarantee<br>
+      structured dependencies in the<br>
+      planned behavior of the class<br>
+      methods.<br>
+      &nbsp;<br>
+      Published class static constant<br>
+      variables should only alter the<br>
+      runtime behavior of the object.<br>
+    </td>
+  </tr>
+  <tr>
+    <td class=tablerow valign=top>
+      If two or more methods are required<br>
+      to effect published events, then<br>
+      the called object is not encapsulated<br>
+      or cohesive.
+    </td>
+    <td class=tablerow valign=top>
+      If an object has two methods that effect and<br>
+      action event, then the two methods should<br>
+      be demoted in scope to private access and<br>
+      a wrapper method provided that internally<br>
+      calls the two private methods in the correct<br>
+      temporary order.<br>
+    </td>
+    <td class=tablerow valign=top>
+      Public and protected object methods <br>
+      should manage events.  Events are<br>
+      published behaviors.  Events may be<br>
+      managed by one or many private<br>
+      methods.
+    </td>
+  </tr>
+</table>
+
+<ul>
+  InvalidDirectionException:<br>
+  <p>
+  <ul>
+    Valid getInstance(int direction)<br>
+    ================================<br>
+    - CompassDirections.EAST<br>
+    - CompassDirections.SOUTH<br>
+    - CompassDirections.WEST<br>
+    - CompassDirections.NORTH<br>
+    --------------------------------<br>
+    - Attempted direction: [7]<br>
+    <br>
+    at CompassPoint.getInstance(CompassPoint.java:104)<br>
+    at CompassPanel.<init>(CompassPanel.java:60)<br>
+    at TurtleMonitorPanelSix.<init>(TurtleMonitorPanelSix.java:28)<br>
+    at TurtleControlPanelSix.<init>(TurtleControlPanelSix.java:31)<br>
+    at TurtleFrameSix.<init>(TurtleFrameSix.java:32)<br>
+    at TurtleFrameSix.main(TurtleFrameSix.java:510)<br>
+  </ul>
+</ul>
+</body>
