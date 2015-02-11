@@ -1,0 +1,101 @@
+// Decompiled by DJ v2.9.9.61 Copyright 2000 Atanas Neshkov  Date: 10/17/02 8:27:46 AM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   CompassPanel.java
+
+import java.awt.*;
+
+public class CompassPanel extends Panel
+{
+
+    protected CompassPanel()
+    {
+        compassDirection = 0;
+        compassTextField = new TextField("Right", 3);
+        buildPanel();
+    }
+
+    private void buildPanel()
+    {
+        setLayout(new BorderLayout());
+        compassTextField.setFont(new Font("San Serif", 1, 11));
+        compassTextField.setBackground(Color.white);
+        compassTextField.setEditable(false);
+        add(compassTextField, "Center");
+        add(compassPoint[0].getPanel(), "East");
+        add(compassPoint[1].getPanel(), "South");
+        add(compassPoint[2].getPanel(), "West");
+        add(compassPoint[3].getPanel(), "North");
+        setPaint();
+        setBackground(Color.lightGray);
+        getPanel().setSize(200, 200);
+    }
+
+    public TextField getCompassText()
+    {
+        return compassTextField;
+    }
+
+    public Panel getPanel()
+    {
+        return this;
+    }
+
+    public void setCompass(int i)
+    {
+        compassDirection = i;
+        setCompassLabel(compassDirection);
+        setPaint();
+    }
+
+    private void setCompassLabel(int i)
+    {
+        switch(i)
+        {
+        case 0: // '\0'
+            compassTextField.setText("Right");
+            break;
+
+        case 1: // '\001'
+            compassTextField.setText("Down");
+            break;
+
+        case 2: // '\002'
+            compassTextField.setText("Left");
+            break;
+
+        case 3: // '\003'
+            compassTextField.setText("Up");
+            break;
+        }
+    }
+
+    private void setPaint()
+    {
+        for(int i = 0; i <= 3; i++)
+        {
+            compassPoint[i].setCompassPoint(compassPoint[i].getCompassPoint(compassDirection));
+            compassPoint[i].getPanel().repaint();
+        }
+
+    }
+
+    private final int OFFSET = 1;
+    private final int BEGIN_X = 0;
+    private final int BEGIN_Y = 0;
+    private final int END_X = 200;
+    private final int END_Y = 200;
+    private final int EAST = 0;
+    private final int SOUTH = 1;
+    private final int WEST = 2;
+    private final int NORTH = 3;
+    private int compassDirection;
+    private final String EAST_LABEL = "Right";
+    private final String SOUTH_LABEL = "Down";
+    private final String WEST_LABEL = "Left";
+    private final String NORTH_LABEL = "Up";
+    private TextField compassTextField;
+    private CompassPoint compassPoint[] = {
+        CompassPoint.getInstance(0), CompassPoint.getInstance(1), CompassPoint.getInstance(2), CompassPoint.getInstance(3)
+    };
+}

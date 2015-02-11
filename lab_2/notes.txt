@@ -1,0 +1,10 @@
+Turtle One
+1. Add "Turn" to both "Turn Left" and "Turn Right". <<inherit>>
+2. Add "Pen State" to both "Pen Up" and "Pen Down". <<inherit>>
+3. "Move" <<extend>> "Turn"
+4. "Move" <<extend>> "Pixel Distance"
+5. "Move" <<extend>> "Pen State"
+
+Turtle Six
+1. Add "Coordinates" to both "Begin Point" and "End Point". <<inherit>>
+2. 
